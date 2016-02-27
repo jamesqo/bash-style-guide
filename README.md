@@ -241,3 +241,5 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     
     exec grep -E "$@"
     ```
+
+- Prefer `$(` to backticks. The latter is legacy syntax and is hard to nest properly.
