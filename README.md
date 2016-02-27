@@ -91,3 +91,28 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     ```
     
     This prevents problems in some code editors which don't have overly sophisticated Bash support. (This also works for inputs with spaces, by the way.)
+    
+    - In general, try to avoid quoting things when possible. Only quote literals when they contain whitespace, dollar signs, or quotes themselves.
+
+- When redirecting to a file descriptor, omit the space and preserve the `1`:
+
+    ```bash
+    # good
+    do-something 1>&2
+    # bad
+    do-something >&2
+    do-something > &2 # also syntactically incorrect
+    ```
+    
+    When redirecting to a file, add a space after the `>` and drop the `1`:
+    
+    ```bash
+    # good
+    do-something > /dev/null
+    do-something 2> /dev/null
+    # bad
+    do-something 1> /dev/null
+    do-something >/dev/null
+    ```
+    
+    - Dilemma: Should `&>` be used? It is a bashism and [deprecated](http://wiki.bash-hackers.org/scripting/obsolete) according to the Bash Hackers wiki, but I personally prefer it.
