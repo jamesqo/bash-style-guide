@@ -149,3 +149,43 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
         foo 'Hello, world!'
     fi
     ```
+
+- `case` statements should be formatted the following way:
+
+    ```bash
+    case "$input" in
+        123)
+            something
+            ;;
+        *)
+            something_else
+            ;;
+    esac
+    ```
+    
+    If the code executed for a case is a single statement, you are permitted to leave it on the same line as the case like this:
+    
+    ```bash
+    case "$input" in
+        123) something ;;
+        *) something_else ;;
+    esac
+    ```
+
+- `if` statements should have the `then` on the same line, but loops like `while` and `for` should have `do` on the next line. For example:
+
+    ```bash
+    # good
+    if foo; then
+    fi
+    for arg in "$@"
+    do
+    done
+    
+    # bad
+    if foo
+    then
+    fi
+    for arg in "$@"; do
+    done
+    ```
