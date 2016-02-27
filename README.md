@@ -189,3 +189,34 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     for arg in "$@"; do
     done
     ```
+
+- Functions should be self-contained; if a function relies on a global variable, it should either be separated out as a new function or supplied as an argument. For example:
+
+    ```bash
+    # good
+    my_func()
+    {
+        do_something "$1"
+    }
+    
+    # or...
+    get_something()
+    {
+        # code...
+    }
+    
+    my_func()
+    {
+        do_something "$(get_something)"
+    }
+    
+    # bad
+    global_var=$(get_something)
+    
+    my_func()
+    {
+        do_something "$global_var"
+    }
+    ```
+    
+    - Dilemma: Should `local` be used in functions? I've never used the keyword much, and it doesn't seem to be defined by POSIX. However, most shells (even 'lean' ones like `dash` and `ash`) seem to support it, so I'm leaning towards yes.
