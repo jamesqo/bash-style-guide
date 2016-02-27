@@ -264,4 +264,16 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     three=$((five - two))
     # bad
     three=$((five-two))
+    three=$(( five - two )) # not too many
+    ```
+
+- Omit unnecessary whitespace when using `(` or `$(` to spawn subshells. For example:
+
+    ```bash
+    # good
+    (cd .. && pwd)
+    contents=$(cat meow)
+    # bad
+    ( cd .. && pwd )
+    contents=$( cat meow )
     ```
