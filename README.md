@@ -116,3 +116,23 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     ```
     
     - Dilemma: Should `&>` be used? It is a bashism and [deprecated](http://wiki.bash-hackers.org/scripting/obsolete) according to the Bash Hackers wiki, but I personally prefer it.
+
+- Variable names should be all-lowercase, and mashed together where possible (e.g. `scriptpath`). Use underscores to separate them if they start to get uncomfortably long, for example `really_long_name` instead of `reallylongname`.
+
+    - Variables exported to child processes should be all uppercase, for example `export DO_SOMETHING=1` instead of `export do_something=1` or `export dosomething=1`.
+
+- Prefer short options to long options, e.g. `sed -i` as opposed to `--in-place`. Also mush them together where possible, e.g. `ls -1d` instead of `ls -1 -d`.
+
+- Booleans can be declared and used in the following way:
+
+    ```bash
+    mybool=true
+    
+    case "$input" in
+        5) mybool=false ;;
+    esac
+    
+    if $mybool; then
+        # code
+    fi
+    ```
