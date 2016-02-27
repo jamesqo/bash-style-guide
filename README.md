@@ -247,3 +247,21 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     ```
 
 - Prefer `$(` to backticks. The latter is legacy syntax and is hard to nest properly.
+
+- When doing arithmetic with `$((`, do not prefix variable names with a dollar sign. For example:
+
+    ```bash
+    # good
+    end=$((start + time))
+    # bad
+    end=$(($start + $time))
+    ```
+    
+    Also, preserve spaces between the arithmetic operators if possible. For example:
+    
+    ```bash
+    # good
+    three=$((five - two))
+    # bad
+    three=$((five-two))
+    ```
