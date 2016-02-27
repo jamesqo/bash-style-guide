@@ -61,6 +61,10 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
         ```
     
     - Use `&&` and `||` instead of `test`'s `-a` and `-o` operators; they can cause problems for certain inputs (see [here](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/test.html#tag_20_128_16) for more info) and are deprecated by POSIX.
+    
+    - Use `-eq` and `-ne` as opposed to `=` and `!=` for comparing numbers. The latters perform *string* comparisons, so for example `test 00 -eq 0` will return true, while `test 00 = 0` will not.
+    
+        - Also, prefer `-gt` and `-lt` to `>` and `<`. Of course, if you are using `[`, this should not be a choice since `>` will be interpreted as file redirection.
 
 - Include a space after the hash in your comments. For example:
 
