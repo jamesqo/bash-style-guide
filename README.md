@@ -21,7 +21,7 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     }
     ```
 
-or like this:
+    or like this:
  
     ```bash
     my_function()
