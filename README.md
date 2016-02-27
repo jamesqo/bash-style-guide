@@ -36,6 +36,7 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     The first one is (in my opinion) more visually appealing, but the second version is less likely to have problems with older shells.
 
 - Use `[` instead of `[[`. The latter not only ties you down to Bash, it is also less visually appealing and can get you into the habit of forgetting to quote things. Only use `[[` when you need it, e.g. `[[ a =~ b ]]` for regexp matching.
+
     - When you're testing a condition within an if statement, use `[`. Otherwise, use `test`. Example:
 
         ```bash
