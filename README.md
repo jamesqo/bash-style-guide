@@ -56,7 +56,7 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
         ! [ -d "$var" ]
         ```
     
-    - Use `&&` and `||` instead of `test`'s `-a` and `-o` operators; they can cause problems for certain inputs (TODO: research this) and are deprecated by POSIX.
+    - Use `&&` and `||` instead of `test`'s `-a` and `-o` operators; they can cause problems for certain inputs (see [here](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/test.html#tag_20_128_16) for more info) and are deprecated by POSIX.
 
 - Include a space after the hash in your comments. For example:
 
