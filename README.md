@@ -90,4 +90,4 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     scriptpath=$(cd "$scriptdir" && pwd -P)
     ```
     
-    This prevents problems in some code editors which don't have overly sophisticated Bash support. (This also works for inputs with spaces.)
+    This prevents problems in some code editors which don't have overly sophisticated Bash support. (This also works for inputs with spaces, by the way.)
