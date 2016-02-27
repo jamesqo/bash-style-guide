@@ -93,6 +93,8 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     This prevents problems in some code editors which don't have overly sophisticated Bash support. (This also works for inputs with spaces, by the way.)
     
     - In general, try to avoid quoting things when possible. Only quote literals when they contain whitespace, dollar signs, or quotes themselves.
+        
+        - It is also acceptable to quote them if they represent some kind of message to be shown to the user, e.g. `echo 'Hello!'`
 
 - When redirecting to a file descriptor, omit the space and preserve the `1`:
 
@@ -134,5 +136,16 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     
     if $mybool; then
         # code
+    fi
+    ```
+
+- Prefer using `&&` and `||` to full-fledged if statements. For example:
+
+    ```bash
+    # good
+    type foo &> /dev/null && foo 'Hello, world!'
+    # bad
+    if type foo &> /dev/null; then
+        foo 'Hello, world!'
     fi
     ```
