@@ -11,7 +11,10 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
 - Should `${BASH_SOURCE[0]}` or `$0` be used to get the script's path? The first is and resilient and handles things like sourcing the script, the second is sh-compatible and more concise.
 
 - *Always* use `#!/usr/bin/env bash` instead of `#!/bin/bash` at the top of the script. Always.
+
     - This is more of an issue than you might think; in systems like FreeBSD, for example, `bash` is in `/usr/bin/local` as opposed to `/bin`.
+    
+    - If you're writing a Bourne-compatible script, it's OK to write `#!/bin/sh` instead of using `env`.
 
 - Dilemma: should functions be declared like this:
 
@@ -220,3 +223,20 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     ```
     
     - Dilemma: Should `local` be used in functions? I've never used the keyword much, and it doesn't seem to be defined by POSIX. However, most shells (even 'lean' ones like `dash` and `ash`) seem to support it, so I'm leaning towards yes.
+
+- Prefer single quotes to double quotes, unless you 1) need string interpolation or 2) have double quotes in your literal. For example:
+
+    ```bash
+    # good
+    echo 'blah blah blah'
+    echo "you're so amazing"
+    echo "The value is: $var"
+    ```
+
+- If you're writing a script that basically forwards all of its arguments to another one, then consider using `exec` to avoid spawning a subshell. For example, in some systems `egrep` is just a wrapper script for `grep` that looks like this:
+
+    ```bash
+    #!/bin/sh
+    
+    exec grep -E "$@"
+    ```
