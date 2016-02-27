@@ -66,3 +66,28 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     ```
 
     This not only looks better, it prevents shebang problems if your comment starts with a `!`.
+
+- Unless necessary, do not use quotes when assigning something to a variable. For example:
+
+    ```bash
+    # good
+    command=help
+    # bad
+    command='help'
+    command="help"
+    ```
+
+    This prevents ugliness when you have many nested commands. For example, this:
+    
+    ```bash
+    scriptpath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+    ```
+    
+    could be rewritten as this:
+    
+    ```bash
+    scriptdir=$(dirname "${BASH_SOURCE[0]}")
+    scriptpath=$(cd "$scriptdir" && pwd -P)
+    ```
+    
+    This prevents problems in some code editors which don't have overly sophisticated Bash support. (This also works for inputs with spaces.)
