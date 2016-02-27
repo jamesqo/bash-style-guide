@@ -46,6 +46,17 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
         # bad
         [ -z "$var" ] && echo '$var is empty.'
         ```
+    
+    - When using `test`, always negate the condition *inside* the brackets. For example:
+    
+        ```bash
+        # good
+        [ ! -d "$var" ]
+        # bad
+        ! [ -d "$var" ]
+        ```
+    
+    - Use `&&` and `||` instead of `test`'s `-a` and `-o` operators; they can cause problems for certain inputs (TODO: research this) and are deprecated by POSIX.
 
 - Include a space after the hash in your comments. For example:
 
