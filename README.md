@@ -6,9 +6,15 @@ My personal style guide for Bash.
 
 This will basically be a bunch of notes/bullet points on Bash until I get the energy to organize it into something coherent; this is *not* meant to be a definitive style guide (at least not yet). I'm mostly going to be rambling here because I just want to get these thoughts out of my head as fast as I can, and clean it up later.
 
+## Philosophy
+
+- Don't throw away POSIX compliance for frivolous features, e.g. `function` or hyphens in function names.
+
+- Do use Bashisms when they're useful and you need them, e.g. arrays.
+
 ## Notes
 
-- Should `${BASH_SOURCE[0]}` or `$0` be used to get the script's path? The first is and resilient and handles things like sourcing the script, the second is sh-compatible and more concise.
+- Use `${BASH_SOURCE[0]}` if the script is intended to be sourced and you don't need POSIX compatibility; otherwise, use `$0`.
 
 - *Always* use `#!/usr/bin/env bash` instead of `#!/bin/bash` at the top of the script. Always.
 
