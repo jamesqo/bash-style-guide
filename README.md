@@ -80,13 +80,13 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
     This prevents ugliness when you have many nested commands. For example, this:
     
     ```bash
-    scriptpath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+    scriptpath="$(cd "$(dirname "$0")" && pwd -P)"
     ```
     
     could be rewritten as this:
     
     ```bash
-    scriptdir=$(dirname "${BASH_SOURCE[0]}")
+    scriptdir=$(dirname "$0")
     scriptpath=$(cd "$scriptdir" && pwd -P)
     ```
     
