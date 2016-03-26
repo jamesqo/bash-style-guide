@@ -16,32 +16,18 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
 
 - Use `${BASH_SOURCE[0]}` if the script is intended to be sourced and you don't need POSIX compatibility; otherwise, use `$0`.
 
-- *Always* use `#!/usr/bin/env bash` instead of `#!/bin/bash` at the top of the script. Always.
+- Shebang: if your script uses *anything* other than `sh` (like bash, python3, or node) then prefix it with `env`. For example, `#!/usr/bin/env bash`. If you're writing a Bourne-compatible script, use `#!/bin/sh`.
 
-    - This is more of an issue than you might think; in systems like FreeBSD, for example, `bash` is in `/usr/bin/local` as opposed to `/bin`.
-    
-    - If you're writing a Bourne-compatible script, it's OK to write `#!/bin/sh` instead of using `env`.
-
-- Dilemma: should functions be declared like this:
+- Functions should be declared like this:
 
     ```bash
-    function my-function {
-        # code
-    }
-    ```
-
-    or like this:
- 
-    ```bash
-    my_function()
+    my_func()
     {
         # code
     }
     ```
- 
-    The first one is (in my opinion) more visually appealing, but the second version is less likely to have problems with older shells.
 
-- Use `[` instead of `[[`. The latter not only ties you down to Bash, it is also less visually appealing and can get you into the habit of forgetting to quote things. Only use `[[` when you need it, e.g. `[[ a =~ b ]]` for regexp matching.
+- Use `[` instead of `[[`. Only use `[[` when you need it, e.g. `[[ a =~ b ]]` for regexp matching.
 
     - When you're testing a condition within an if statement, use `[`. Otherwise, use `test`. Example:
 
