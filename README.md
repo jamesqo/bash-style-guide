@@ -96,17 +96,17 @@ This will basically be a bunch of notes/bullet points on Bash until I get the en
         
         - It is also acceptable to quote them if they represent some kind of message to be shown to the user, e.g. `echo 'Hello!'`
 
-- When redirecting to a file descriptor, omit the space and preserve the `1`:
+- When redirecting to a file descriptor, omit the space and drop the `1`:
 
     ```bash
     # good
-    do-something 1>&2
-    # bad
     do-something >&2
+    # bad
+    do-something 1>&2
     do-something > &2 # also syntactically incorrect
     ```
     
-    When redirecting to a file, add a space after the `>` and drop the `1`:
+    When redirecting to a file, add a space after the `>` and also drop the `1`:
     
     ```bash
     # good
